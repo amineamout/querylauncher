@@ -18,11 +18,8 @@ class QueryLauncher extends App {
   val columns = args(2)
   val output = args(3)
 
-  val columnsMap = columns.substring(1, columns.length - 1)
-    .split(",")
-    .map(_.split(":"))
-    .map { case Array(k, v) => (k.substring(1, k.length-1), v.substring(1, v.length-1))}
-    .toMap
+  //"a":"ab","b":"cd","c":"cd","d":"de","e":"ef","f":"fg"
+  val columnsMap = columns.split(",").map(_.split(":")).map { case Array(k, v) => (k, v)}.toMap
 
   tables.foreach {
     table =>
