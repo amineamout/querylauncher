@@ -1,6 +1,7 @@
 package com.axaim.dlk.querylauncher
 
 import java.io.File
+import java.sql.Date
 
 import com.axaim.dlk.querylauncher.Utils.SparkQueryRun
 import com.axaim.dlk.querylauncher.utils.SparkUtils
@@ -38,7 +39,7 @@ class SparkQueryRun$Test extends FunSpec with GivenWhenThen with SparkUtils {
 
       Given("a dataframe and a list of columns")
       //val colNames = Seq("age", "city", "job")
-      val colNames = Map("age" -> "29", "city" -> "Paris", "job" -> "dev")
+      val colNames = Map("date_transac" -> java.time.LocalDate.now.toString, "timestamp_transac" -> System.currentTimeMillis.toString)
       val df = spark.createDataFrame(Seq(("amine", "axa", "im"), ("eric", "axa", "partners"), ("alex", "axa", "corporate"), ("houssam", "axa", "im"))).toDF()
 
 

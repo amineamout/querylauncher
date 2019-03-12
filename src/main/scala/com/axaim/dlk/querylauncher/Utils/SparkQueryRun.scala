@@ -14,7 +14,7 @@ class SparkQueryRun(implicit spark : SparkSession) extends Serializable {
   }
 
 
-  def addColumns(df : DataFrame, colVal : Map[String, String]) : DataFrame = {
+  def addColumns(df : DataFrame, colVal : Map[String, Any]) : DataFrame = {
     colVal.foldLeft(df){ case (df, (kColname, vColval)) => df.withColumn(kColname, lit(vColval))}
   }
 
