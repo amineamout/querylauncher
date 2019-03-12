@@ -38,10 +38,8 @@ class SparkQueryRun$Test extends FunSpec with GivenWhenThen with SparkUtils {
     it("should add columns taken in parameter to a dataframe") {
 
       Given("a dataframe and a list of columns")
-      //val colNames = Seq("age", "city", "job")
       val colNames = Map("date_transac" -> java.time.LocalDate.now.toString, "timestamp_transac" -> System.currentTimeMillis.toString)
       val df = spark.createDataFrame(Seq(("amine", "axa", "im"), ("eric", "axa", "partners"), ("alex", "axa", "corporate"), ("houssam", "axa", "im"))).toDF()
-
 
       When("adding the columns and values")
       val dfAfterAddingColumns =  sparkQuery.addColumns(df, colNames)
