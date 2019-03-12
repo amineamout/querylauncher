@@ -10,11 +10,14 @@ class SparkQueryRun(implicit spark : SparkSession) extends Serializable {
   def createDataframeFromQuery(query : String) : DataFrame = {
 
     val df = spark.sql(query)
-
     df
   }
 
-  //should transform colNames to a map (with key value)
+
+  def addColumns(df : DataFrame, colVal : Map[String, String]) : DataFrame = {
+    colVal.foldLeft(df){ case (df, (kColname, vColval)) => df.withColumn(kColname, lit(vColval))}
+  }
+
   def addColumns(df : DataFrame, colNames : Seq[String]) : DataFrame = {
 
     colNames.foldLeft(df)((df, c) =>
@@ -24,6 +27,6 @@ class SparkQueryRun(implicit spark : SparkSession) extends Serializable {
 
 
   def writeTable(df : DataFrame, outputPath : String) = {
-    df.write.csv(outputPath)
+    df.coalesce(1).write.csv(outputPath)
   }
 }
