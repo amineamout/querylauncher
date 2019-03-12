@@ -18,7 +18,7 @@ class SparkQueryRun(implicit spark : SparkSession) extends Serializable {
   def addColumns(df : DataFrame, colNames : Seq[String]) : DataFrame = {
 
     colNames.foldLeft(df)((df, c) =>
-      df.withColumn(s"$c",  lit("a value"))
+      df.withColumn(c,  lit("a value"))
     )
   }
 
