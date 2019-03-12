@@ -20,7 +20,6 @@ class SparkQueryRun(implicit spark : SparkSession) extends Serializable {
     colNames.foldLeft(df)((df, c) =>
       df.withColumn(s"$c",  lit("a value"))
     )
-
   }
 
 
