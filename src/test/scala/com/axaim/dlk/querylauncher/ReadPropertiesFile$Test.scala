@@ -1,10 +1,10 @@
 package com.axaim.dlk.querylauncher
 
 import com.axaim.dlk.querylauncher.Utils.ReadPropertiesFile
-import com.axaim.dlk.querylauncher.utils.SparkUtils
+import com.axaim.dlk.querylauncher.utils.SparkUtils$Test
 import org.scalatest.{FunSpec, GivenWhenThen}
 
-class ReadPropertiesFile$Test extends FunSpec with GivenWhenThen with SparkUtils {
+class ReadPropertiesFile$Test extends FunSpec with GivenWhenThen with SparkUtils$Test {
 
   describe("A configuration file as input") {
 

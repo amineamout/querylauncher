@@ -27,6 +27,7 @@ class SparkQueryRun(implicit spark : SparkSession) extends Serializable {
 
 
   def writeTable(df : DataFrame, outputPath : String) = {
+    df.show()
     df.coalesce(1).write.csv(outputPath)
   }
 }

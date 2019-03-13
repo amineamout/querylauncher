@@ -2,7 +2,7 @@ package com.axaim.dlk.querylauncher.utils
 
 import org.apache.spark.sql.SparkSession
 
-trait SparkUtils {
+trait SparkUtils$Test {
 
   implicit val spark = SparkSession.builder
     .master("local[*]")

@@ -4,10 +4,10 @@ import java.io.File
 import java.sql.Date
 
 import com.axaim.dlk.querylauncher.Utils.SparkQueryRun
-import com.axaim.dlk.querylauncher.utils.SparkUtils
+import com.axaim.dlk.querylauncher.utils.SparkUtils$Test
 import org.scalatest.{FunSpec, GivenWhenThen}
 
-class SparkQueryRun$Test extends FunSpec with GivenWhenThen with SparkUtils {
+class SparkQueryRun$Test extends FunSpec with GivenWhenThen with SparkUtils$Test {
 
   val sparkQuery = new SparkQueryRun
 
