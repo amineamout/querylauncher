@@ -16,7 +16,9 @@ class QueryLauncher$Test extends FunSpec with GivenWhenThen with SparkUtils$Test
     it("Run the main class to test the whole process") {
 
       Given("an args of elements")
+
       val args = Array("-t", "people", "date:13-03-2019,timestamp:113213032219", "output.csv")
+
       val df = spark.createDataFrame(Seq(("amine", "axa", "im"), ("eric", "axa", "partners"), ("alex", "axa", "corporate"), ("houssam", "axa", "im"))).toDF()
       spark.sql("drop table if exists people")
       val repo = "/home/dev/IdeaProjects/queryLauncher/spark-warehouse/"

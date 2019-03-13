@@ -1,7 +1,7 @@
 package com.axaim.dlk.querylauncher.Utils
 
-import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.apache.spark.sql.functions.{lit}
+import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
+import org.apache.spark.sql.functions.lit
 
 class SparkQueryRun(implicit spark : SparkSession) extends Serializable {
 
@@ -28,6 +28,6 @@ class SparkQueryRun(implicit spark : SparkSession) extends Serializable {
 
   def writeTable(df : DataFrame, outputPath : String) = {
     df.show()
-    df.coalesce(1).write.csv(outputPath)
+    df.coalesce(1).write.mode(SaveMode.Overwrite).csv(outputPath)
   }
 }
