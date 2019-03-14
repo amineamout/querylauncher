@@ -33,6 +33,17 @@ class DataFrameCopyAppend(implicit spark : SparkSession) extends Serializable {
 
   }
 
+  def appendDataframes(histoDataframe : DataFrame, newDataFrame : DataFrame, mode : String) : DataFrame = {
+
+    mode match {
+      case "append_full" => this.copyDataframeSchemaFull(histoDataframe, newDataFrame)
+      case "append_null" => this.copyDataframeSchemaNull(histoDataframe, newDataFrame).union(newDataFrame)
+    }
+
+
+
+  }
+
 
 
 }
