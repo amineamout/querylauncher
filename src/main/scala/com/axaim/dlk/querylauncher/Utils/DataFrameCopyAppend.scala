@@ -40,8 +40,6 @@ class DataFrameCopyAppend(implicit spark : SparkSession) extends Serializable {
       case "append_null" => this.copyDataframeSchemaNull(histoDataframe, newDataFrame).union(newDataFrame)
     }
 
-
-
   }
 
 
