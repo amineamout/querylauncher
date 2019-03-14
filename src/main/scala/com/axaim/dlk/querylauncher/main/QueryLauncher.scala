@@ -9,6 +9,9 @@ class QueryLauncher extends App {
 
   implicit val spark = SparkSession
                         .builder()
+                        //important // .config("spark.sql.warehouse.dir", "user/hive/warehouse")
+                      // .config("hive.metastore.uris","thrift://localhost:9083")
+                        //.enableHiveSupport()
                         .getOrCreate()
 
   val sparkQueryRun = new SparkQueryRun()
@@ -18,20 +21,20 @@ class QueryLauncher extends App {
   val columns = args(2)
   val output = args(3)
 
-  //"a":"ab","b":"cd","c":"cd","d":"de","e":"ef","f":"fg"
+  //"col1:val1,col2:val2"
   val columnsMap = columns.split(",").map(_.split(":")).map { case Array(k, v) => (k, v)}.toMap
 
-  tables.foreach {
-    table =>
 
-      val df = sparkQueryRun.createDataframeFromQuery("select * from "+table)
-      val dfAddedCols = sparkQueryRun.addColumns(df, columnsMap)
-      sparkQueryRun.writeTable(dfAddedCols, output.toString)
-
-  }
 
   options match {
-    case "-t" | "--table" => println("create table")
+    case "-t" | "--table" => tables.foreach {
+                              table =>
+
+                                val df = sparkQueryRun.createDataframeFromQuery("select * from "+table)
+                                val dfAddedCols = sparkQueryRun.addColumns(df, columnsMap)
+                                sparkQueryRun.writeTable(dfAddedCols, output.toString)
+
+                            }
     case _ => println("mis usage of command line")
   }
 
