@@ -1,12 +1,12 @@
 package com.axaim.dlk.querylauncher.Utils
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.apache.spark.sql.functions.{ monotonically_increasing_id, broadcast}
+import org.apache.spark.sql.functions.{ monotonically_increasing_id, broadcast, col, lit}
 
 class DataFrameCopyAppend(implicit spark : SparkSession) extends Serializable {
 
 
-  def copyDataframeSchema(histoDataframe : DataFrame, newDataFrame : DataFrame) : DataFrame = {
+  def copyDataframeSchemaFull(histoDataframe : DataFrame, newDataFrame : DataFrame) : DataFrame = {
 
     val exprs = newDataFrame.schema.fields.map { colField =>
       if (histoDataframe.schema.fields.contains(colField)) histoDataframe.col(colField.name)
@@ -19,6 +19,17 @@ class DataFrameCopyAppend(implicit spark : SparkSession) extends Serializable {
     val resultDF = histodf.join(broadcast(newdf), histodf("generatedId1") === newdf("generatedId2"), "inner").select(exprs : _*)
 
     resultDF
+
+  }
+
+  def copyDataframeSchemaNull(histoDataframe : DataFrame, newDataFrame : DataFrame) : DataFrame = {
+
+    val exprs = newDataFrame.schema.fields.map { colField =>
+      if (histoDataframe.schema.fields.contains(colField)) col(colField.name)
+      else lit(null).cast(colField.dataType).alias(colField.name)
+    }
+
+    histoDataframe.select(exprs: _*)
 
   }
 
