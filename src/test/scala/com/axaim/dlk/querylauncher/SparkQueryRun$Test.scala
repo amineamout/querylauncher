@@ -16,7 +16,7 @@ class SparkQueryRun$Test extends FunSpec with GivenWhenThen with SparkUtils$Test
     it("should create a dataframe from a query string") {
 
       Given("a query string and a stored table")
-      val query = "select * from SparkQueryRun$Test"
+      val query = "select * from SparkQueryRunTest"
       val df = spark.createDataFrame(Seq(("amine", "axa", "im"), ("eric", "axa", "partners"), ("alex", "axa", "corporate"), ("houssam", "axa", "im"))).toDF()
       spark.sql("drop table if exists people")
       val currentDirectory = new java.io.File(".").getCanonicalPath
