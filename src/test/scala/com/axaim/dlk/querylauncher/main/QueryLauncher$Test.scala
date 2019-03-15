@@ -25,7 +25,7 @@ class QueryLauncher$Test extends FunSpec with GivenWhenThen with SparkUtils$Test
       val repo = currentDirectory+"/queryLauncher/spark-warehouse/"
       import org.apache.commons.io.FileUtils
       FileUtils.deleteDirectory(new File(repo))
-      df.coalesce(1).write.saveAsTable("QueryLauncher$Test")
+      df.coalesce(1).write.saveAsTable("QueryLauncherTest")
 
       When("running the main class")
       ql.main(args)

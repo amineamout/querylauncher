@@ -23,7 +23,7 @@ class SparkQueryRun$Test extends FunSpec with GivenWhenThen with SparkUtils$Test
       val repo = currentDirectory+"/queryLauncher/spark-warehouse/"
       import org.apache.commons.io.FileUtils
       FileUtils.deleteDirectory(new File(repo))
-      df.coalesce(1).write.saveAsTable("SparkQueryRun$Test")
+      df.coalesce(1).write.saveAsTable("SparkQueryRunTest")
 
       When("calling createDataframeFromQuery")
       val dfFromQuery = sparkQuery.createDataframeFromQuery(query)
