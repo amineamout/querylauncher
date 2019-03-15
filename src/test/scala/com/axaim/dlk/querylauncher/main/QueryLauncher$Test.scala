@@ -21,7 +21,8 @@ class QueryLauncher$Test extends FunSpec with GivenWhenThen with SparkUtils$Test
 
       val df = spark.createDataFrame(Seq(("amine", "axa", "im"), ("eric", "axa", "partners"), ("alex", "axa", "corporate"), ("houssam", "axa", "im"))).toDF()
       spark.sql("drop table if exists people")
-      val repo = "/home/dev/IdeaProjects/queryLauncher/spark-warehouse/"
+      val currentDirectory = new java.io.File(".").getCanonicalPath
+      val repo = currentDirectory+"/queryLauncher/spark-warehouse/"
       import org.apache.commons.io.FileUtils
       FileUtils.deleteDirectory(new File(repo))
       df.coalesce(1).write.saveAsTable("people")
