@@ -16,14 +16,14 @@ class SparkQueryRun$Test extends FunSpec with GivenWhenThen with SparkUtils$Test
     it("should create a dataframe from a query string") {
 
       Given("a query string and a stored table")
-      val query = "select * from people"
+      val query = "select * from SparkQueryRun$Test"
       val df = spark.createDataFrame(Seq(("amine", "axa", "im"), ("eric", "axa", "partners"), ("alex", "axa", "corporate"), ("houssam", "axa", "im"))).toDF()
       spark.sql("drop table if exists people")
       val currentDirectory = new java.io.File(".").getCanonicalPath
       val repo = currentDirectory+"/queryLauncher/spark-warehouse/"
       import org.apache.commons.io.FileUtils
       FileUtils.deleteDirectory(new File(repo))
-      df.coalesce(1).write.saveAsTable("people")
+      df.coalesce(1).write.saveAsTable("SparkQueryRun$Test")
 
       When("calling createDataframeFromQuery")
       val dfFromQuery = sparkQuery.createDataframeFromQuery(query)

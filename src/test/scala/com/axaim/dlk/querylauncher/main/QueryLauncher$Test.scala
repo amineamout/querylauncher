@@ -17,7 +17,7 @@ class QueryLauncher$Test extends FunSpec with GivenWhenThen with SparkUtils$Test
 
       Given("an args of elements")
 
-      val args = Array("-t", "people", "date:13-03-2019,timestamp:113213032219", "output.csv")
+      val args = Array("-t", "QueryLauncher$Test", "date:13-03-2019,timestamp:113213032219", "output.csv")
 
       val df = spark.createDataFrame(Seq(("amine", "axa", "im"), ("eric", "axa", "partners"), ("alex", "axa", "corporate"), ("houssam", "axa", "im"))).toDF()
       spark.sql("drop table if exists people")
@@ -25,7 +25,7 @@ class QueryLauncher$Test extends FunSpec with GivenWhenThen with SparkUtils$Test
       val repo = currentDirectory+"/queryLauncher/spark-warehouse/"
       import org.apache.commons.io.FileUtils
       FileUtils.deleteDirectory(new File(repo))
-      df.coalesce(1).write.saveAsTable("people")
+      df.coalesce(1).write.saveAsTable("QueryLauncher$Test")
 
       When("running the main class")
       ql.main(args)
