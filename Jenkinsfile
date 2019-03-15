@@ -5,16 +5,16 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sbt clean
-                sbt update
-                sbt compile
+                sh "sbt clean"
+                sh "sbt update"
+                sh "sbt compile"
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sbt test
-                sbt doc
+                sh "sbt test"
+                sh "sbt doc"
             }
         }
         stage('Deploy') {
