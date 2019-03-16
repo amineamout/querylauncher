@@ -32,6 +32,11 @@ pipeline {
             steps {
                 sh "sbt package"
                 echo 'Deploying....'
+                try {
+                    sh "cp ${WORKSPACE}/target/scala-2.12/querylauncher-0.1.jar ${HOME}/deploy"
+                } catch (Exception err) {
+                    currentBuild.result = 'FAILURE'
+                }
 
             }
         }
