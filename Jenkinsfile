@@ -8,10 +8,15 @@ pipeline {
                 git poll: true, branch: 'master', url: 'https://github.com/amineamout/querylauncher.git', credentialsId: 'ef6342cb-a263-487f-84ac-99ca52057549'
             }
         }
+        stage('cleaning') {
+            steps {
+                sh "sbt clean"
+                sh "rm -rf /var/lib/jenkins/workspace/querylauncher/"
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh "sbt clean"
                 sh "sbt update"
                 sh "sbt compile"
             }
