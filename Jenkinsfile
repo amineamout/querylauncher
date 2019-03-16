@@ -11,7 +11,7 @@ pipeline {
         stage('cleaning') {
             steps {
                 sh "sbt clean"
-                sh "rm -rf /var/lib/jenkins/workspace/querylauncher/"
+                sh "sudo rm -rf /var/lib/jenkins/workspace/querylauncher/"
             }
         }
         stage('Build') {
