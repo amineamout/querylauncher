@@ -34,7 +34,7 @@ pipeline {
                 echo 'Deploying....'
                 script {
                     try {
-                        sh "cp ${WORKSPACE}/target/scala-2.12/querylauncher-0.1.jar ${HOME}/deploy"
+                        sh "cp ${WORKSPACE}/target/scala-2.12/querylauncher-0.1.jar ${HOME}/deploy/querylauncher-0.1.jar"
                     } catch (Exception err) {
                         currentBuild.result = 'FAILURE'
                     }
