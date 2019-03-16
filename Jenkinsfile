@@ -11,7 +11,7 @@ pipeline {
         stage('cleaning') {
             steps {
                 sh "sbt clean"
-                sh "rm -rf ${WORKSPACE}/querylauncherPipeline/spark-warehouse/"
+                sh "rm -rf ${WORKSPACE}/spark-warehouse/"
             }
         }
         stage('Build') {
