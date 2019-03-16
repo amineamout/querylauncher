@@ -1,0 +1,40 @@
+---
+
+#ansible-playbook template.yml
+
+- name: run tasks in each env
+  hosts: amineamout.com
+  connection: local
+  tasks:
+   - name: create folder outputs
+     file:
+      path: "{{ item }}"
+      state: directory
+      owner: dev
+      group: dev
+      mode: 0777
+      recurse: yes
+     with_items:
+      - '/home/dev/ansible/qualif'
+      - '/home/dev/ansible/prod'
+      - '/home/dev/ansible/dev'
+   - name: template file onto remote host
+     template:
+      src: "{{ playbook_dir }}/templates/spark/spark-submit.sh.j2"
+      dest: /home/dev/ansible/{{ env.short }}/spark-submit.sh
+      owner: dev
+      group: dev
+      mode: 0777
+     vars:
+     with_items:
+      - short: qualif
+        long: qualification
+        target: qualif.amineamout.com
+      - short: prod
+        long: production
+        target: prod.amineamout.com
+      - short: dev
+        long: development
+        target: dev.amineamout.com
+     loop_control:
+       loop_var: env
