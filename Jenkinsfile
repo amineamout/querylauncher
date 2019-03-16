@@ -30,6 +30,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                sh "sbt package"
                 echo 'Deploying....'
 
             }
