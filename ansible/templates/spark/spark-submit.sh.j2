@@ -1,2 +1,2 @@
-echo "spark-submit --deploy-mode cluster --master yarn --num-executors 5 --executor-cores 5 --executor-memory 20g –conf spark.yarn.submit.waitAppCompletion=false spark-submit --environment={{env.short}} querylauncher-0.1.jar \"-t\" \"QueryLauncherTest\" \"date:13-03-2019,timestamp:113213032219\" \"folder\"
+echo "spark-submit --deploy-mode cluster --master yarn --num-executors 5 --executor-cores 5 --executor-memory 20g –conf spark.yarn.submit.waitAppCompletion=false spark-submit --environment={{env.short}} querylauncher-0.1.jar \"-t\" \"QueryLauncherTest\" \"date:13-03-2019,timestamp:113213032219\" \"folder\""
 spark-submit --deploy-mode cluster --master yarn spark-submit --environment={{env.short}} querylauncher-0.1.jar
