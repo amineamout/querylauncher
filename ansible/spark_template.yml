@@ -1,7 +1,7 @@
 ---
 
 #ansible-playbook template.yml
-
+#first create the "ansible" folder and chown to jenkins user instead of dev user
 - name: run tasks in each env
   hosts: amineamout.com
   connection: local
