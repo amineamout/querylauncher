@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout Git') {
             steps {
-                git poll: true, branch: '${branch}', url: 'https://github.com/amineamout/querylauncher.git', credentialsId: 'ef6342cb-a263-487f-84ac-99ca52057549'
+                git poll: true, branch: '${branch}', url: 'https://github.com/amineamout/querylauncher.git', credentialsId: '9f4a36ae-80a0-49cb-a4a7-e09e035187c2'
             }
         }
         stage('cleaning') {
