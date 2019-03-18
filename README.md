@@ -17,6 +17,10 @@ sudo -u solr ./solr create -c cassandra_employee
 
 https://stackoverflow.com/questions/17922696/how-to-select-rows-in-cassandra-for-indexing-in-solr
 
+vs
+
+https://snapdev.net/2017/08/03/install-solr-on-ubuntu-14-04-or-16-06-without-datastax-dse/
+
 
 
 
