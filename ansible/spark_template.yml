@@ -15,13 +15,14 @@
       mode: 0777
       recurse: yes
      with_items:
-      - '/home/dev/ansible/qualif'
-      - '/home/dev/ansible/prod'
-      - '/home/dev/ansible/dev'
+      - '/home/dev/ansible/output'
+      - '/home/dev/ansible/output/qualif'
+      - '/home/dev/ansible/output/prod'
+      - '/home/dev/ansible/output/dev'
    - name: template file onto remote host
      template:
       src: "{{ playbook_dir }}/templates/spark/spark-submit.sh.j2"
-      dest: /home/dev/ansible/{{ env.short }}/spark-submit.sh
+      dest: /home/dev/ansible/{{ env.short }}/output/spark-submit.sh
       owner: dev
       group: dev
       mode: 0777
