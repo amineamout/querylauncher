@@ -30,7 +30,7 @@ pipeline {
         }
         stage('generate scripts') {
             steps {
-                execIn('ansible-playbook ansible/spark_template.yml')
+                execIn('ansible-playbook spark_template.yml', './ansible')
             }
         }
         stage('Deploy') {
@@ -48,4 +48,11 @@ pipeline {
             }
         }
     }
+}
+
+def execIn(command, path) {
+    sh """
+        cd ${path}
+        ${command}
+    """
 }
