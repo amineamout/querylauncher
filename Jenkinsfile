@@ -28,6 +28,14 @@ pipeline {
                 sh "sbt doc"
             }
         }
+        stage('generate scripts') {
+            steps {
+                sh "cd ansible"
+                sh "pwd"
+                sh "cd .."
+                //execIn('ansible-playbook spark_template.yml')
+            }
+        }
         stage('Deploy') {
             steps {
                 sh "sbt package"
