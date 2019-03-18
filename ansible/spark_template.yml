@@ -22,7 +22,7 @@
    - name: template file onto remote host
      template:
       src: "{{ playbook_dir }}/templates/spark/spark-submit.sh.j2"
-      dest: /home/dev/ansible/{{ env.short }}/output/spark-submit.sh
+      dest: /home/dev/ansible/output/{{ env.short }}/spark-submit.sh
       owner: jenkins
       group: jenkins
       mode: 0777
